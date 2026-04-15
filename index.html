@@ -11,15 +11,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Yüksekliği içeriğe göre esnetir */
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
+            transition: background-color 0.5s ease; /* Arka plan geçiş efekti */
         }
         .container {
             padding: 20px;
             width: 100%;
+            max-width: 500px; /* Mobilde çok yayılmaması için */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Elemanlar arası boşluk */
         }
+
+        /* Fotoğraf Stili */
+        #profile-img {
+            width: 150px; /* Fotoğraf boyutu */
+            height: 150px;
+            border-radius: 50%; /* Yuvarlak yapar */
+            border: 5px solid white; /* Beyaz çerçeve */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Hafif gölge */
+            object-fit: cover; /* Fotoğrafın bozulmadan sığmasını sağlar */
+            display: block; /* Başlangıçta görünür */
+        }
+
         #gift-button {
             padding: 15px 30px;
             font-size: 18px;
@@ -33,12 +51,14 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.2s, background-color 0.3s;
             font-weight: bold;
+            display: block; /* Başlangıçta görünür */
         }
         #gift-button:active {
             transform: scale(0.95);
         }
+
         #note {
-            display: none;
+            display: none; /* Başlangıçta gizli */
             /* Tıklandığında arka plan bebek mavisi */
             background-color: #89CFF0; 
             padding: 30px;
@@ -47,10 +67,11 @@
             line-height: 1.8;
             /* Yazı renkleri beyaz */
             color: white; 
-            max-width: 85%;
+            width: 90%;
             margin: 0 auto;
             animation: fadeIn 1s ease-in;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -60,6 +81,8 @@
 <body>
 
 <div class="container">
+    <img src="fotograf.jpg" alt="Bizim Fotoğrafımız" id="profile-img">
+
     <button id="gift-button" onclick="showNote()">Butona tıkla notu gör</button>
     
     <div id="note">
@@ -71,10 +94,11 @@
 
 <script>
     function showNote() {
-        // Butonu gizle ve notu göster
+        // Butonu ve fotoğrafı gizle, notu göster
         document.getElementById('gift-button').style.display = 'none';
+        document.getElementById('profile-img').style.display = 'none';
         document.getElementById('note').style.display = 'block';
-        // Not ekranı açıldığında tüm sayfa arka planını da bebek mavisi yapalım ki bütünlük sağlansın
+        // Tüm sayfa arka planını da bebek mavisi yap
         document.body.style.backgroundColor = "#89CFF0";
     }
 </script>
