@@ -6,102 +6,79 @@
     <title>Sana Bir Notum Var</title>
     <style>
         body {
-            /* Gökyüzü mavisi arka plan */
-            background-color: #87CEEB; 
+            /* Arka plan fotoğrafı tüm ekranı kaplasın */
+            background-image: url('fotograf.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Yüksekliği içeriğe göre esnetir */
+            height: 100vh;
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            transition: background-color 0.5s ease; /* Arka plan geçiş efekti */
-        }
-        .container {
-            padding: 20px;
-            width: 100%;
-            max-width: 500px; /* Mobilde çok yayılmaması için */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px; /* Elemanlar arası boşluk */
+            transition: background 0.5s ease; /* Geçiş efekti */
         }
 
-        /* Fotoğraf Stili */
-        #profile-img {
-            width: 150px; /* Fotoğraf boyutu */
-            height: 150px;
-            border-radius: 50%; /* Yuvarlak yapar */
-            border: 5px solid white; /* Beyaz çerçeve */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Hafif gölge */
-            object-fit: cover; /* Fotoğrafın bozulmadan sığmasını sağlar */
-            display: block; /* Başlangıçta görünür */
+        /* Fotoğrafın üzerine hafif bir karartma ekleyerek butonun okunmasını sağlar */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Fotoğrafı %20 karartır */
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2; /* İçeriğin karartmanın üstünde durmasını sağlar */
+            padding: 20px;
+            width: 100%;
         }
 
         #gift-button {
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 15px 35px;
+            font-size: 20px;
             /* Bebek mavisi buton */
             background-color: #89CFF0; 
             /* Butondan iki ton daha koyu çerçeve */
             border: 3px solid #5DA9E1; 
             color: white;
-            border-radius: 25px;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.2s, background-color 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
             font-weight: bold;
-            display: block; /* Başlangıçta görünür */
         }
+
         #gift-button:active {
-            transform: scale(0.95);
+            transform: scale(0.9);
         }
 
         #note {
-            display: none; /* Başlangıçta gizli */
-            /* Tıklandığında arka plan bebek mavisi */
+            display: none;
+            /* Tıklandığında arka plan bebek mavisi olacak */
             background-color: #89CFF0; 
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             line-height: 1.8;
-            /* Yazı renkleri beyaz */
             color: white; 
-            width: 90%;
+            max-width: 85%;
             margin: 0 auto;
             animation: fadeIn 1s ease-in;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <img src="fotograf.jpg" alt="Bizim Fotoğrafımız" id="profile-img">
-
-    <button id="gift-button" onclick="showNote()">Butona tıkla notu gör</button>
-    
-    <div id="note">
-        <p>Bazen bazı insanlar, daha önce hiç tanışmamış olsanız bile size 'evdeymiş' hissi verir. Seni ilk gördüğümde o hisse kapılmıştım; o an seni hayatımda, yanımda ve kalbimde istemek benim için bir tercih değil, bir kaderdi.</p>
-        <p>Geçen her saniye, o günkü isteğimi ne kadar derin bir sevgiye dönüştürdü bir bilsen... Kalbinin güzelliği yüzüne, yüzün ise benim her günüme yansıyor. Seninle yaşlanmak değil, seninle yaşamak en büyük hediyem. Yeni yaşın sana en az senin bana verdiğin mutluluk kadar güzellik getirsin.</p>
-        <p><strong>İyi ki doğdun, iyi ki benimsin.</strong></p>
-    </div>
-</div>
-
-<script>
-    function showNote() {
-        // Butonu ve fotoğrafı gizle, notu göster
-        document.getElementById('gift-button').style.display = 'none';
-        document.getElementById('profile-img').style.display = 'none';
-        document.getElementById('note').style.display = 'block';
-        // Tüm sayfa arka planını da bebek mavisi yap
-        document.body.style.backgroundColor = "#89CFF0";
-    }
-</script>
-
-</body>
-</html>
+    <button id="gift-button" onclick="showNote()">Butona tıkla
