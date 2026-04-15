@@ -6,13 +6,8 @@
     <title>Sana Bir Notum Var</title>
     <style>
         body {
-            /* Arka plan fotoğrafı tüm ekranı kaplasın */
-            background-image: url('fotograf.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            
+            /* Gökyüzü mavisi arka plan */
+            background-color: #87CEEB; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,65 +15,69 @@
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            transition: background 0.5s ease; /* Geçiş efekti */
         }
-
-        /* Fotoğrafın üzerine hafif bir karartma ekleyerek butonun okunmasını sağlar */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.2); /* Fotoğrafı %20 karartır */
-            z-index: 1;
-        }
-
         .container {
-            position: relative;
-            z-index: 2; /* İçeriğin karartmanın üstünde durmasını sağlar */
             padding: 20px;
             width: 100%;
         }
-
         #gift-button {
-            padding: 15px 35px;
-            font-size: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
             /* Bebek mavisi buton */
             background-color: #89CFF0; 
             /* Butondan iki ton daha koyu çerçeve */
             border: 3px solid #5DA9E1; 
             color: white;
-            border-radius: 50px;
+            border-radius: 25px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background-color 0.3s;
             font-weight: bold;
         }
-
         #gift-button:active {
-            transform: scale(0.9);
+            transform: scale(0.95);
         }
-
         #note {
             display: none;
-            /* Tıklandığında arka plan bebek mavisi olacak */
+            /* Tıklandığında arka plan bebek mavisi */
             background-color: #89CFF0; 
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             line-height: 1.8;
+            /* Yazı renkleri beyaz */
             color: white; 
             max-width: 85%;
             margin: 0 auto;
             animation: fadeIn 1s ease-in;
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <button id="gift-button" onclick="showNote()">Butona tıkla
+    <button id="gift-button" onclick="showNote()">Butona tıkla notu gör</button>
+    
+    <div id="note">
+        <p>Bazen bazı insanlar, daha önce hiç tanışmamış olsanız bile size 'evdeymiş' hissi verir. Seni ilk gördüğümde o hisse kapılmıştım; o an seni hayatımda, yanımda ve kalbimde istemek benim için bir tercih değil, bir kaderdi.</p>
+        <p>Geçen her saniye, o günkü isteğimi ne kadar derin bir sevgiye dönüştürdü bir bilsen... Kalbinin güzelliği yüzüne, yüzün ise benim her günüme yansıyor. Seninle yaşlanmak değil, seninle yaşamak en büyük hediyem. Yeni yaşın sana en az senin bana verdiğin mutluluk kadar güzellik getirsin.</p>
+        <p><strong>İyi ki doğdun, iyi ki benimsin.</strong></p>
+    </div>
+</div>
+
+<script>
+    function showNote() {
+        // Butonu gizle ve notu göster
+        document.getElementById('gift-button').style.display = 'none';
+        document.getElementById('note').style.display = 'block';
+        // Not ekranı açıldığında tüm sayfa arka planını da bebek mavisi yapalım ki bütünlük sağlansın
+        document.body.style.backgroundColor = "#89CFF0";
+    }
+</script>
+
+</body>
+</html>
